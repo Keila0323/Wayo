@@ -23,6 +23,26 @@ body {
   background: var(--sand-light);
   color: var(--text-dark);
   min-height: 100vh;
+  background-image: url('/static/hero-palm.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* ── Full-page overlay (sits on top of body bg image) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.40) 0%,
+    rgba(0,0,0,0.25) 40%,
+    rgba(0,0,0,0.55) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ── Hero ────────────────────────────────────────────── */
@@ -35,29 +55,11 @@ body {
   justify-content: center;
   text-align: center;
   padding: 40px 24px 80px;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('/static/hero-palm.jpg');
-  background-size: cover;
-  background-position: center 30%;
-  z-index: 0;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.50) 0%,
-    rgba(0,0,0,0.45) 50%,
-    rgba(0,0,0,0.65) 100%
-  );
   z-index: 1;
 }
+
+.hero-bg { display: none; }
+.hero-overlay { display: none; }
 
 .hero-content {
   position: relative;
@@ -136,14 +138,15 @@ body {
   margin: -60px auto 60px;
   padding: 0 20px;
   position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 
 .planner-card {
-  background: var(--white);
+  background: rgba(255,255,255,0.97);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
   padding: 40px;
+  backdrop-filter: blur(10px);
 }
 
 .planner-card h2 {
@@ -273,6 +276,8 @@ input:focus, select:focus, textarea:focus {
   display: none;
   text-align: center;
   padding: 60px 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .loading.active { display: block; }
@@ -290,8 +295,9 @@ input:focus, select:focus, textarea:focus {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .loading p {
-  color: var(--text-mid);
+  color: #fff;
   font-size: 1rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 
 /* ── Results ─────────────────────────────────────────── */
@@ -300,6 +306,8 @@ input:focus, select:focus, textarea:focus {
   margin: 0 auto 80px;
   padding: 0 20px;
   display: none;
+  position: relative;
+  z-index: 2;
 }
 
 .results.active { display: block; }
