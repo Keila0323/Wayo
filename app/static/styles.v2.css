@@ -631,12 +631,72 @@ footer span { color: var(--sand); font-weight: 600; }
   box-shadow: 0 2px 8px rgba(212,169,106,0.4);
 }
 
-/* ── Recommendation Cards ────────────────────────────── */
+/* ── Recommendation Carousel ─────────────────────────── */
 .recs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  position: relative;
   margin-bottom: 28px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 8px 4px 12px;
+  flex: 1;
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+
+/* ── Carousel Arrows ─────────────────────────────────── */
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal-dark);
+  transition: background 0.2s, transform 0.15s, opacity 0.2s;
+  z-index: 3;
+  position: relative;
+}
+
+.carousel-arrow:hover {
+  background: #fff;
+  transform: scale(1.08);
+}
+
+.carousel-arrow:active {
+  transform: scale(0.96);
+}
+
+.carousel-arrow svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.carousel-arrow--left { margin-right: 8px; }
+.carousel-arrow--right { margin-left: 8px; }
+
+.carousel-arrow.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .rec-card {
@@ -649,6 +709,8 @@ footer span { color: var(--sand); font-weight: 600; }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 0 0 290px;
+  scroll-snap-align: start;
 }
 
 .rec-card:hover {
@@ -744,7 +806,9 @@ footer span { color: var(--sand); font-weight: 600; }
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 600px) {
-  .recs-grid { grid-template-columns: 1fr; }
+  .rec-card { flex: 0 0 260px; }
+  .carousel-arrow { width: 34px; height: 34px; }
+  .carousel-arrow svg { width: 16px; height: 16px; }
   .category-tabs { gap: 8px; }
   .cat-tab { padding: 10px 16px; font-size: 0.88rem; }
 }

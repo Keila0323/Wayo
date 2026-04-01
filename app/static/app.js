@@ -207,15 +207,15 @@ function renderSubcategories() {
 }
 
 function renderCards() {
-  const grid = document.getElementById("recsGrid");
+  const container = document.getElementById("recsGrid");
   const items = (currentData[activeCategory] || {})[activeSubcategory] || [];
 
   if (!items.length) {
-    grid.innerHTML = `<div class="no-recs">No recommendations found for this category.</div>`;
+    container.innerHTML = `<div class="carousel-wrapper"><div class="no-recs">No recommendations found for this category.</div></div>`;
     return;
   }
 
-  grid.innerHTML = items.map(item => `
+  const cardsHTML = items.map(item => `
     <div class="rec-card">
       <div class="rec-header">
         <div>
@@ -231,4 +231,59 @@ function renderCards() {
       </div>
     </div>
   `).join("");
+
+  container.innerHTML = `
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="carousel-track" id="carouselTrack">
+        ${cardsHTML}
+      </div>
+      <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+  `;
+
+  // Arrow scroll logic
+  const track = container.querySelector("#carouselTrack");
+  const leftBtn = container.querySelector(".carousel-arrow--left");
+  const rightBtn = container.querySelector(".carousel-arrow--right");
+
+  const SCROLL_AMOUNT = 320;
+
+  function updateArrows() {
+    const atStart = track.scrollLeft <= 4;
+    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    leftBtn.classList.toggle("hidden", atStart);
+    rightBtn.classList.toggle("hidden", atEnd);
+  }
+
+  leftBtn.addEventListener("click", () => {
+    track.scrollBy({ left: -SCROLL_AMOUNT, behavior: "smooth" });
+  });
+
+  rightBtn.addEventListener("click", () => {
+    track.scrollBy({ left: SCROLL_AMOUNT, behavior: "smooth" });
+  });
+
+  track.addEventListener("scroll", updateArrows, { passive: true });
+  updateArrows();
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  track.addEventListener("touchstart", e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  track.addEventListener("touchend", e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      track.scrollBy({ left: diff > 0 ? SCROLL_AMOUNT : -SCROLL_AMOUNT, behavior: "smooth" });
+    }
+  }, { passive: true });
 }
