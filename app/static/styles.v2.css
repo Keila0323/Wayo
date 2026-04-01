@@ -104,7 +104,7 @@ body::before {
 
 .hero-scroll {
   position: absolute;
-  bottom: 32px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -119,6 +119,10 @@ body::before {
   text-transform: uppercase;
   text-shadow: 0 1px 6px rgba(0,0,0,0.5);
   animation: bounce 2s infinite;
+}
+
+@media (max-width: 600px) {
+  .hero-scroll { bottom: 60px; }
 }
 
 .hero-scroll svg {
