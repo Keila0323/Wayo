@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayo — Plan less. Experience more.</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">Caribbean &amp; Latin America</span>
+      <h1>Wayo</h1>
+      <p class="hero-tagline">Plan less. Experience more.</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Plan your trip</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── Planner Form ── -->
+  <section class="planner">
+    <div class="planner-card">
+      <h2>Where are you headed?</h2>
+      <p class="subtitle">Tell us about your trip and we'll build your perfect day-by-day itinerary.</p>
+
+      <form id="plannerForm">
+        <div class="form-grid">
+
+          <!-- Destination -->
+          <div class="form-group">
+            <label for="destination">Country</label>
+            <select id="destination" name="destination" required>
+              <option value="">Select a country</option>
+              <option value="Dominican Republic">🇩🇴 Dominican Republic</option>
+              <option value="Puerto Rico">🇵🇷 Puerto Rico</option>
+              <option value="Colombia">🇨🇴 Colombia</option>
+              <option value="Mexico">🇲🇽 Mexico</option>
+            </select>
+          </div>
+
+          <!-- City -->
+          <div class="form-group">
+            <label for="city">City / Region</label>
+            <select id="city" name="city" required>
+              <option value="">Select country first</option>
+            </select>
+          </div>
+
+          <!-- Check-in -->
+          <div class="form-group">
+            <label for="check_in">Check-in Date</label>
+            <input type="date" id="check_in" name="check_in" required />
+          </div>
+
+          <!-- Check-out -->
+          <div class="form-group">
+            <label for="check_out">Check-out Date</label>
+            <input type="date" id="check_out" name="check_out" required />
+          </div>
+
+          <!-- Group Type -->
+          <div class="form-group">
+            <label for="group_type">Traveling As</label>
+            <select id="group_type" name="group_type" required>
+              <option value="">Select group type</option>
+              <option value="Solo traveler">Solo traveler</option>
+              <option value="Couple">Couple</option>
+              <option value="Group of friends">Group of friends</option>
+              <option value="Family with kids">Family with kids</option>
+              <option value="Adults only group">Adults only group</option>
+            </select>
+          </div>
+
+          <!-- Budget -->
+          <div class="form-group">
+            <label for="budget">Budget Level</label>
+            <select id="budget" name="budget" required>
+              <option value="">Select budget</option>
+              <option value="Budget (backpacker)">Budget (backpacker)</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Luxury">Luxury</option>
+            </select>
+          </div>
+
+          <!-- Accommodation -->
+          <div class="form-group full">
+            <label for="accommodation">Where are you staying? <span style="font-weight:400;text-transform:none;font-size:0.78rem;">(optional — neighborhood, hotel name, or address)</span></label>
+            <input type="text" id="accommodation" name="accommodation" placeholder="e.g. Zona Colonial, Barceló Bávaro, Airbnb in El Poblado..." />
+          </div>
+
+        </div>
+
+        <!-- Vibes -->
+        <div style="margin-top: 24px;">
+          <span class="vibe-label">What's your vibe? <span style="font-weight:400;text-transform:none;font-size:0.78rem;">(select all that apply)</span></span>
+          <div class="vibes-grid">
+            <div class="vibe-chip" data-vibe="Beaches & Water">🏖️ Beaches</div>
+            <div class="vibe-chip" data-vibe="Nightlife & Bars">🍹 Nightlife</div>
+            <div class="vibe-chip" data-vibe="Local Food & Street Food">🌮 Local Food</div>
+            <div class="vibe-chip" data-vibe="Culture & History">🏛️ Culture</div>
+            <div class="vibe-chip" data-vibe="Adventure & Outdoors">🧗 Adventure</div>
+            <div class="vibe-chip" data-vibe="Shopping & Markets">🛍️ Shopping</div>
+            <div class="vibe-chip" data-vibe="Relaxation & Wellness">🧘 Relaxation</div>
+            <div class="vibe-chip" data-vibe="Family Activities">👨‍👩‍👧 Family</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-plan" id="planBtn">
+          Build My Itinerary ✦
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Loading ── -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>Wayo is crafting your perfect trip...</p>
+  </div>
+
+  <!-- ── Results ── -->
+  <section class="results" id="results"></section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>Wayo &mdash; <span>Plan less. Experience more.</span></p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
