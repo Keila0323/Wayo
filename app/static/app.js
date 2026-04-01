@@ -224,6 +224,7 @@ function renderCards() {
         </div>
         <span class="rec-cost">${item.cost || ""}</span>
       </div>
+      ${item.address ? `<div class="rec-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${item.address}</div>` : ""}
       <p class="rec-desc">${item.description || ""}</p>
       <div class="rec-footer">
         <span class="rec-vibe">✦ ${item.vibe || ""}</span>

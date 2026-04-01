@@ -753,6 +753,25 @@ footer span { color: var(--sand); font-weight: 600; }
   border: 1px solid #E8D8B8;
 }
 
+.rec-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 0.76rem;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin-top: -2px;
+}
+
+.rec-address svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--teal);
+  opacity: 0.8;
+}
+
 .rec-desc {
   font-size: 0.88rem;
   color: var(--text-mid);
