@@ -22,7 +22,7 @@ Most travel apps focus on Europe and North America. The Caribbean and Latin Amer
 
 ## Live Demo
 
-🔗 **[Try Wayo](https://wayo-travel.onrender.com)** *(hosted on Render — may take ~30s to wake up on first load)*
+🔗 **[Try Wayo](https://wayo-zdgf.onrender.com)** *(hosted on Render — may take ~30s to wake up on first load)*
 
 ---
 
